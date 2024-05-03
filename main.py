@@ -1,3 +1,9 @@
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+
+app = FastAPI()
+
+html = '''
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -102,3 +108,7 @@ function loadSlowImage() {
 </script>
 </body>
 </html>
+
+@app.get("/")
+async def get(request: Request):
+    return HTMLResponse(content=html, status_code=200)
